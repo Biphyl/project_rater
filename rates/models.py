@@ -22,10 +22,10 @@ class Profile(models.Model):
         self.delete()
      
     @classmethod   
-    def update_name(cls,id,new_First_Name):
-        cls.objects.filter(user_id = id).update(First_Name=new_First_Name)
-        new_title_object = cls.objects.get(First_Name=new_First_Name)
-        new_name = new_title_object.First_Name
+    def update_name(cls,id,new_first_name):
+        cls.objects.filter(user_id = id).update(first_name=new_first_name)
+        new_title_object = cls.objects.get(first_name=new_first_name)
+        new_name = new_title_object.first_name
         return new_name
         
     @classmethod

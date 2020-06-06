@@ -48,7 +48,7 @@ class ProfileTestClass(TestCase):
     '''
     
     def setUp(self):
-        self.profile = Profile(First_Name='daniel',Last_Name='karani',Email='danielkarani@gmail.com', bio='test bio',user_id=3)
+        self.profile = Profile(first_name='lovine',last_name='otieno',email='oduor.lovine@gmail.com', bio='test bio',user_id=3)
 
     def test_instance(self):
         self.assertTrue(isinstance(self.profile,Profile))
@@ -66,7 +66,7 @@ class ProfileTestClass(TestCase):
                         
     def test_update_method(self):
         self.profile.save_profile()
-        new_name = 'Erik' 
+        new_name = 'biron' 
         update = self.profile.update_name(self.profile.user_id,new_name)
         self.assertEqual(update,new_name)
         
