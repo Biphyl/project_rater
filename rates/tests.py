@@ -42,3 +42,41 @@ class PosTestClass(TestCase):
         Post.objects.all().delete() 
         
         
+class ProfileTestClass(TestCase):
+    '''
+    This is a class that perform unittest on the Profile Model.
+    '''
+    
+    def setUp(self):
+        self.profile = Profile(First_Name='daniel',Last_Name='karani',Email='danielkarani@gmail.com', bio='test bio',user_id=3)
+
+    def test_instance(self):
+        self.assertTrue(isinstance(self.profile,Profile))
+        
+    def test_save_method(self):
+        self.profile.save_profile()
+        profile = Profile.objects.all()
+        self.assertTrue(len(profile)>0)
+    
+    def test_delete_method(self):
+        self.profile.save_profile()
+        self.profile.delete_profile()
+        profile = Profile.objects.all()
+        self.assertTrue(len(profile) is 0)
+                        
+    def test_update_method(self):
+        self.profile.save_profile()
+        new_name = 'Erik' 
+        update = self.profile.update_name(self.profile.user_id,new_name)
+        self.assertEqual(update,new_name)
+        
+    def test_single_project_method(self):
+        self.profile.save_profile()
+        profile = self.profile.get_user_profile(self.profile.user_id)
+        self.assertTrue(profile.user_id  is 3)
+        
+        
+        
+        
+    def tearDown(self):
+        Profile.objects.all().delete() 
