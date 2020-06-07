@@ -35,7 +35,7 @@
             {% if user.is_authenticated %}
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="{%url  'home' %}">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <form class="form-inline my-2 my-lg-0 ml-5" action="{% url 'search_project' %}">
                     <input class="form-control mr-sm-2" type="text" placeholder="Search" name="search">
