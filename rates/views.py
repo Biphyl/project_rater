@@ -25,3 +25,15 @@ def new_project(request):
         return render(request,'projects/new_post.html',{"form":form}) 
 
 
+def search_project(request):
+    
+    if 'search' in request.GET and request.GET["search"]:
+
+        search_term = request.GET.get("search")
+        searched_project = Post.objects.filter(title__icontains=search_term)
+        message = f"{search_term}"  
+        return render(request, 'myprojects/search.html', {"message": message, "projects": searched_project})
+
+    else:
+        message = "You haven't searched for any term "
+        return render(request, 'projects/search.html', {"message": message})
