@@ -58,3 +58,19 @@ def profile_info(request):
     
     
     return render(request,'projects/profile.html',{"projects":projects,"profile":profile_info,"current_user":current_user})
+
+class PostViewset(viewsets.ModelViewSet):
+    '''
+    API endpoint that allows one to view the details of projects posted
+    '''
+    
+    queryset = Post.objects.all().order_by('title')
+    serializer_class = PostSerializer
+    
+class ProfileViewset(viewsets.ModelViewSet):
+    '''
+    API endpoint that allows one to view the details of profiles
+    '''
+    
+    queryset = Profile.objects.all()
+    serializer_class = ProfileSeralizer
