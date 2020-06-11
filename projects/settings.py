@@ -46,7 +46,6 @@ INSTALLED_APPS = [
     'rest_framework',
     'star_ratings',
     'tinymce',
-    'crispy_forms',
 ]
 
 MIDDLEWARE = [
