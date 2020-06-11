@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from .models import *
-from .forms import ProjectUpload,UpdateProfileForm
+from .forms import ProjectUpload,UpdateProfileForm,RegisterForm
 from django.contrib.auth.decorators import login_required
 from rest_framework import viewsets
 from .serializers import PostSerializer,ProfileSerializer
@@ -60,6 +60,29 @@ def profile_info(request):
     
     return render(request,'projects/profile.html',{"projects":projects,"profile":profile_info,"current_user":current_user})
 
+def registration(request):
+    if request.method == 'POST':
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            form.save()
+            username=form.cleaned_data['username']
+            email=form.cleaned_data['email']
+            password1=form.cleaned_data['password1']
+            recipient=User(username=username,email=email)
+            try:
+                send_welcome_email(username,email)
+                messages.success(request, f'Account has been created successfully!')
+            except:
+                print('error')
+            return redirect('login')
+
+    else:
+        form = RegisterForm()
+    context = {
+        'form':form,
+    }
+    return render(request, 'register.html', context)
 class PostViewset(viewsets.ModelViewSet):
     '''
     API endpoint that allows one to view the details of projects posted
