@@ -11,7 +11,7 @@ urlpatterns =  [
     path(r'update/',views.update_profile,name="profileupdate"),
     path(r'profile/', views.profile_info,name='profile'),
     path('login/', auth_view.LoginView.as_view(template_name='django_registration/login.html'), name='login'),
-    path('logout/', auth_view.LogoutView.as_view(template_name='logout.html'), name='home'),
+    path('logout/', auth_view.LogoutView.as_view(template_name='logout.html'), name='logout'),
     path('register/', views.registration, name='register')     
     
 ]
